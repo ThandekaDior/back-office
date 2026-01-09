@@ -1,12 +1,14 @@
 package com.thandekadior.backoffice;
 
 import com.thandekadior.backoffice.model.Transaction;
+import com.thandekadior.backoffice.service.BusinessService;
 import com.thandekadior.backoffice.service.TransactionService;
 import com.thandekadior.backoffice.service.UserService;
 import com.thandekadior.backoffice.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +47,26 @@ public class App {
                         tx.getId(), tx.getAmount(), tx.getDescription());
             }
         }
+
+        BusinessService businessService = new BusinessService();
+
+        //total spend per user
+        Map<User, BigDecimal> totals = businessService.calculateTotalSpendPerUser();
+        for (Map.Entry<User, BigDecimal> entry : totals.entrySet()) {
+            User user = entry.getKey();
+            BigDecimal total = entry.getValue();
+            logger.info("User: {} - {} | Total Spend: {}",
+                    user.getId(), user.getName(), total);
+        }
+
+        //top 2 users by spend
+        List<Map.Entry<User, BigDecimal>> topUsers = businessService.topUsersBySpend(2);
+        logger.info("Top spenders:");
+        for (Map.Entry<User, BigDecimal> entry : topUsers) {
+            logger.info("   {} - {} | {}",
+                    entry.getKey().getId(), entry.getKey().getName(), entry.getValue());
+        }
+
 
     }
 }
