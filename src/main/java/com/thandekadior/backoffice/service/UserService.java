@@ -4,6 +4,8 @@ import com.thandekadior.backoffice.dao.UserDAO;
 import com.thandekadior.backoffice.model.Transaction;
 import com.thandekadior.backoffice.model.User;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Map;
 

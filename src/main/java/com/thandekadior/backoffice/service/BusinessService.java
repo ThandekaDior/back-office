@@ -4,9 +4,12 @@ import com.thandekadior.backoffice.dao.UserDAO;
 import com.thandekadior.backoffice.model.User;
 import com.thandekadior.backoffice.model.Transaction;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.util.*;
 
+@Service
 public class BusinessService {
     private final UserDAO userDAO = new UserDAO();
 

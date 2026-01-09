@@ -4,11 +4,14 @@ import com.thandekadior.backoffice.config.DatabaseConfig;
 import com.thandekadior.backoffice.model.User;
 import com.thandekadior.backoffice.model.Transaction;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 
+@Repository
 public class UserDAO {
 
     public List<User> getAllUsers() {

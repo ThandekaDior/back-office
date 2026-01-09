@@ -3,12 +3,15 @@ package com.thandekadior.backoffice.dao;
 import com.thandekadior.backoffice.config.DatabaseConfig;
 import com.thandekadior.backoffice.model.Transaction;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class TransactionDAO {
     public List<Transaction> getAllTransactions() {
         List<Transaction> transactions = new ArrayList<>();
