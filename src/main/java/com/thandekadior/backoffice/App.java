@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 
 public class App {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
@@ -20,7 +21,7 @@ public class App {
         List<User> users = userService.listUsers();
 
         for (User user : users) {
-            logger.info("User: {} - {}", user.getId(), user.getName());
+            logger.info("User: {} - {} | {} | {}", user.getId(), user.getName(), user.getEmail(), user.getCreatedAt());
         }
 
         //transactions
@@ -28,6 +29,21 @@ public class App {
         for (Transaction tx : transactionService.listTransactions()) {
             logger.info("Transaction: {} | User {} | {} | {}",
                     tx.getId(), tx.getUserId(), tx.getAmount(), tx.getDescription());
+        }
+
+        //join query - users with transactions
+        Map<User, List<Transaction>> userTxMap = userService.listUsersWithTransactions();
+        for (Map.Entry<User, List<Transaction>> entry : userTxMap.entrySet()) {
+            User user = entry.getKey();
+            List<Transaction> txs = entry.getValue();
+
+            logger.info("User: {} - {} ({} transactions)",
+                    user.getId(), user.getName(), txs.size());
+
+            for (Transaction tx : txs) {
+                logger.info(" Transaction {} | {} | {}",
+                        tx.getId(), tx.getAmount(), tx.getDescription());
+            }
         }
 
     }
