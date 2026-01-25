@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class User {
     private int id;
-    private String name;
-    private String email;
+    private String name; //supplier
+    private String email; //
     private Timestamp createdAt;
 
     public User(int id, String name) {
