@@ -4,5 +4,5 @@ target/
 .idea/
 *.iml
 *.jar
-resources/
+src/main/resources/
 *.properties
